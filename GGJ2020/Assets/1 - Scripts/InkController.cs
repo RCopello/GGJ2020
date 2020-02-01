@@ -29,14 +29,20 @@ public class InkController : MonoBehaviour
     // Nao permite que o jogo troque as falas sem que a escolha seja feita
     private bool isChoosing = false;
 
+    // Nao permite que se começa um dialogo com o mesmo NPC quando a conversa já começou
+    private bool startedDialog = false;
+
     // Start is called before the first frame update
     void Start()
     {
         // Pega referencia da HUD
-        HUD = this.GetComponent<DialogBoxHUD>();
+        HUD = this.GetComponent<DialogBoxHUD>(); 
+    }
 
+    public void InitiateDialog(TextAsset textStory)
+    {
         // Pega os trechos de texto do Ink
-        story = new Story(inkJSON.text);
+        story = new Story(textStory.text);
 
         loadStoryChunk();
     }
@@ -126,7 +132,7 @@ public class InkController : MonoBehaviour
         {
             if (tag.StartsWith("NAME"))
             {
-                return tag.TrimStart("NAME_".ToCharArray());
+                return tag.Remove(0, 5);
             }
         }
 

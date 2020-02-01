@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class NPCPresence : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public TextAsset NPCDialog;
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        checkIfOnTrigger(collision);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        
+        checkIfOnTrigger(collision);
+    }
+
+    // fazo  trigger do NPC
+    private void checkIfOnTrigger(Collider2D collision)
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (collision.CompareTag("Player"))
+            {
+                // Para de andar
+
+                // Trigga o dialogo
+                InkController.Instance.InitiateDialog(NPCDialog);
+
+            }
+        }
     }
 }
