@@ -15,6 +15,22 @@ public class DialogBoxHUD : MonoBehaviour
     private TMP_Text dialog;
     private List<Button> buttons = new List<Button>();
 
+
+    // Delegate
+    delegate void MyDelegate();
+
+    UnityEngine.Events.UnityAction GetChoiceIndex(int i, List<Choice> choices)
+    {
+        return delegate {
+
+            InkController inkControl = this.GetComponent<InkController>();
+
+            Debug.Log(i);
+            inkControl.OnClickChoiceButton(choices[i]);
+        };
+    }
+
+    // Mostra as informações do trexo de texto na HUD
     public void displayName(string name)
     {
         this.name.text = name;
@@ -22,7 +38,7 @@ public class DialogBoxHUD : MonoBehaviour
 
     public void displayText(string text)
     {
-        dialog = Instantiate(dialogPrefab);
+        dialog = Instantiate(dialogPrefab, this.transform);
         
         this.dialog.text = text;
     }
@@ -31,8 +47,24 @@ public class DialogBoxHUD : MonoBehaviour
     {
         for (int i = 0; i < choices.Count; i++)
         {
-            buttons.Add(Instantiate(choicePrefab));
-            buttons[i].GetComponentInChildren<Text>().text = choices[i].text;
+            buttons.Add(Instantiate(choicePrefab, this.transform));
+            buttons[i].transform.GetChild(0).GetComponent<TMP_Text>().text = choices[i].text;
+
+
+
+            buttons[i].onClick.AddListener(GetChoiceIndex(i,choices));
+        }
+    }
+
+    // Limpa as informações para um novo trecho de código
+    public void refreshDialogBox()
+    {
+        if (dialog)
+            Destroy(dialog.gameObject);
+
+        foreach(Button button in buttons)
+        {
+            Destroy(button.gameObject);
         }
     }
 

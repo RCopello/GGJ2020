@@ -19,24 +19,36 @@ public class InkController : MonoBehaviour
 
         // Pega os trechos de texto do Ink
         story = new Story(inkJSON.text);
-        displayInDialogBox("Fulano", loadStoryChunk());
 
-        if (story.currentChoices.Count > 0)
-        {
-            displayInDialogBox(story.currentChoices);
-        }
-
-        displayInDialogBox("Fulano", loadStoryChunk());
+        loadStoryChunk();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Return))
+        {
+            HUD.refreshDialogBox();
+            loadStoryChunk();
+        }
     }
 
-    // Carrega os textos do Ink
-    private string loadStoryChunk()
+
+
+    // Carrega os dialogos do Ink
+    private void loadStoryChunk()
+    {
+        if (story.currentChoices.Count > 0)
+        {
+            displayInDialogBox(story.currentChoices);
+        } else
+        {
+            displayInDialogBox("Fulano", loadStoryText());
+        }   
+    }
+
+    // Carrega os textos da historia
+    private string loadStoryText()
     {
         string text = "";
 
@@ -58,5 +70,15 @@ public class InkController : MonoBehaviour
     private void displayInDialogBox(List<Choice> choices)
     {
         HUD.displayChoices(choices);
+    }
+
+    // Funcoes atreladas ao botao de escolha
+
+    // When we click the choice button, tell the story to choose that choice!
+    public void OnClickChoiceButton(Choice choice)
+    {
+        HUD.refreshDialogBox();
+        story.ChooseChoiceIndex(choice.index);
+        loadStoryChunk();
     }
 }
