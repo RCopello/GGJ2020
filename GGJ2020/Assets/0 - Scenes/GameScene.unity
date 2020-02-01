@@ -195,10 +195,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af30ebd0feb46048a904228e6c56d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4
+  movementSpeed: 5
   canMove: 1
   baseCameraSpeed: 0.0625
-  cameraDistanceTolerance: 1
+  cameraDistanceTolerance: 4
 --- !u!1 &775043464
 GameObject:
   m_ObjectHideFlags: 0

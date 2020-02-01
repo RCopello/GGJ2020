@@ -22,15 +22,23 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canMove && (Input.GetAxis("Horizontal") > 0))
+        if(canMove && (Input.GetAxis("Horizontal") > 0.5))
         {
-            transform.position = transform.position + (Vector3.right * movementSpeed * Time.deltaTime);
-            AdjustCamera();
+            Vector3 movement = (Vector3.right * movementSpeed * Time.deltaTime);
+            transform.position = transform.position + movement;
+            if(this.transform.position.x - camera.position.x > cameraDistanceTolerance)
+            {
+                camera.position = camera.position + movement;
+            }
         }
-        if(canMove && (Input.GetAxis("Horizontal") < 0))
+        if(canMove && (Input.GetAxis("Horizontal") < -0.5))
         {
-            transform.position = transform.position + (Vector3.left * movementSpeed * Time.deltaTime);
-            AdjustCamera();
+            Vector3 movement = (Vector3.left * movementSpeed * Time.deltaTime);
+            transform.position = transform.position + movement;
+            if(camera.position.x - this.transform.position.x > cameraDistanceTolerance)
+            {
+                camera.position = camera.position + movement;
+            }
         }
     }
 
