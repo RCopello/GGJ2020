@@ -14,14 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inkLibrary:
   - compileAutomatically: 0
+<<<<<<< HEAD
     inkAsset: {fileID: 102900000, guid: b35ccca0abe9b45c093184f9a3800382, type: 3}
     jsonAssetPath: {fileID: 0}
     jsonAsset: {fileID: 4900000, guid: 148f2e05f896f47fcb139b8581ed3277, type: 3}
   - compileAutomatically: 0
+=======
+>>>>>>> 9901068ea0da0c853571598bbfb15ae8f8892898
     inkAsset: {fileID: 102900000, guid: b6dbefc44ad224983ac1ba872b7f7e7f, type: 3}
     jsonAssetPath: {fileID: 0}
     jsonAsset: {fileID: 4900000, guid: 4bc53228b3eaa4084bba3982d4666dd3, type: 3}
   - compileAutomatically: 0
+<<<<<<< HEAD
+=======
+    inkAsset: {fileID: 102900000, guid: b35ccca0abe9b45c093184f9a3800382, type: 3}
+    jsonAssetPath: {fileID: 0}
+    jsonAsset: {fileID: 4900000, guid: 148f2e05f896f47fcb139b8581ed3277, type: 3}
+  - compileAutomatically: 0
+>>>>>>> 9901068ea0da0c853571598bbfb15ae8f8892898
     inkAsset: {fileID: 102900000, guid: 1460e815e969b43b8a83a7caa8b48c27, type: 3}
     jsonAssetPath: {fileID: 0}
     jsonAsset: {fileID: 4900000, guid: 6cf48bb6d89824cc69e35b43f9a1aca6, type: 3}

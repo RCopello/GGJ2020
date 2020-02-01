@@ -149,8 +149,12 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+<<<<<<< HEAD
   m_Children:
   - {fileID: 769706355}
+=======
+  m_Children: []
+>>>>>>> 9901068ea0da0c853571598bbfb15ae8f8892898
   m_Father: {fileID: 792342061}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -171,7 +175,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6642d43b1571f4b859e020ccb63428bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   name: {fileID: 769706356}
+=======
+  namePrefab: {fileID: 865938145945850548, guid: 67407279fd71c4a1ea35fa7508f54807,
+    type: 3}
+>>>>>>> 9901068ea0da0c853571598bbfb15ae8f8892898
   dialogPrefab: {fileID: 2420927631244314172, guid: 319ef632e8bf941db9d3684a30626193,
     type: 3}
   choicePrefab: {fileID: 2772881583658414237, guid: 7ae330f8c0424493eb15309cff2c2835,
@@ -297,6 +306,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &769706354
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,6 +462,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769706354}
   m_CullTransparentMesh: 0
+=======
+>>>>>>> 9901068ea0da0c853571598bbfb15ae8f8892898
 --- !u!1 &792342056
 GameObject:
   m_ObjectHideFlags: 0
