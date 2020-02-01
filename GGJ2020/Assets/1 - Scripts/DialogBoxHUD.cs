@@ -7,11 +7,19 @@ using TMPro;
 
 public class DialogBoxHUD : MonoBehaviour
 { 
+<<<<<<< HEAD
     public TMP_Text name;
 
     public TMP_Text dialogPrefab;
     public Button choicePrefab;
 
+=======
+    public TMP_Text namePrefab;
+    public TMP_Text dialogPrefab;
+    public Button choicePrefab;
+
+    private TMP_Text name;
+>>>>>>> 9901068ea0da0c853571598bbfb15ae8f8892898
     private TMP_Text dialog;
     private List<Button> buttons = new List<Button>();
 
@@ -33,6 +41,11 @@ public class DialogBoxHUD : MonoBehaviour
     // Mostra as informações do trexo de texto na HUD
     public void displayName(string name)
     {
+<<<<<<< HEAD
+=======
+        this.name = Instantiate(namePrefab, this.transform);
+
+>>>>>>> 9901068ea0da0c853571598bbfb15ae8f8892898
         this.name.text = name;
     }
 
@@ -50,8 +63,11 @@ public class DialogBoxHUD : MonoBehaviour
             buttons.Add(Instantiate(choicePrefab, this.transform));
             buttons[i].transform.GetChild(0).GetComponent<TMP_Text>().text = choices[i].text;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 9901068ea0da0c853571598bbfb15ae8f8892898
             buttons[i].onClick.AddListener(GetChoiceIndex(i,choices));
         }
     }
@@ -59,6 +75,12 @@ public class DialogBoxHUD : MonoBehaviour
     // Limpa as informações para um novo trecho de código
     public void refreshDialogBox()
     {
+<<<<<<< HEAD
+=======
+        if (name)
+            Destroy(name.gameObject);
+
+>>>>>>> 9901068ea0da0c853571598bbfb15ae8f8892898
         if (dialog)
             Destroy(dialog.gameObject);
 
