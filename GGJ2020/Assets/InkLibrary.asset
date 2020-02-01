@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: dc234ab28a32840f5adfb84a075bc023, type: 3}
   m_Name: InkLibrary
-  m_EditorClassIdentifier: Assembly-CSharp-Editor-firstpass:Ink.UnityIntegration:InkLibrary
+  m_EditorClassIdentifier: 
   inkLibrary:
   - compileAutomatically: 0
     inkAsset: {fileID: 102900000, guid: b35ccca0abe9b45c093184f9a3800382, type: 3}
