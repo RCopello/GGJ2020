@@ -49,11 +49,55 @@ public class PlayerMovement : MonoBehaviour
                 camera.position = camera.position + movement;
             }
         }
+
+        // if(Input.GetMouseButtonDown(0))
+        // {
+        //     MoveTo(CastRayToWorld().x);
+        // }
     }
 
+    Vector3 CastRayToWorld() {
+        float distance = 4.5f;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 point = ray.origin + (ray.direction * distance);
+        return point;
+    }
+
+    //corotina para mexer o player para algum lugar
+    IEnumerator MoveToCoroutine(float target)
+    {
+        canMove = false;
+        float dir = Mathf.Sign(target - transform.position.x);
+        while(Mathf.Abs(transform.position.x - target) > 0.3)
+        {
+            if(dir > 0.0)
+            {
+                Vector3 movement = (Vector3.right * movementSpeed * Time.deltaTime);
+                transform.position = transform.position + movement;
+                if(this.transform.position.x - camera.position.x > cameraDistanceTolerance && camera.position.x < cameraLimitRight)
+                {
+                    camera.position = camera.position + movement;
+                }
+
+            }
+            if(dir < 0 && transform.position.x > playerLimitLeft)
+            {
+                Vector3 movement = (Vector3.left * movementSpeed * Time.deltaTime);
+                transform.position = transform.position + movement;
+                if(camera.position.x - this.transform.position.x > cameraDistanceTolerance && camera.position.x > cameraLimitLeft)
+                {
+                    camera.position = camera.position + movement;
+                }
+            }
+            yield return new WaitForEndOfFrame();
+        }
+        canMove = true;
+    }
+    //move o player para o x passado
     public void MoveTo(float x)
     {
-
+        if(x < playerLimitLeft || x > playerLimitRight) return;
+        StartCoroutine(MoveToCoroutine(x));
     }
 
     void FixedUpdate()
