@@ -61,27 +61,35 @@ public class InkController : MonoBehaviour
     // Carrega os dialogos do Ink
     private void loadStoryChunk()
     {
-
-        if (story.currentChoices.Count > 0)
+        if (story.canContinue)
         {
-            isChoosing = true;
-            displayInDialogBox(story.currentChoices);
-        } else
-        {
-            string text = loadStoryText();
-
-            List<string> tags = story.currentTags;
-            string name = checkNameTag(tags);
-
-            if (name != null)
+            if (story.currentChoices.Count > 0)
             {
-                displayInDialogBox(name, text);
-            } else
+                isChoosing = true;
+                displayInDialogBox(story.currentChoices);
+            }
+            else
             {
-                displayInDialogBox(text);
+                string text = loadStoryText();
+
+                List<string> tags = story.currentTags;
+                string name = checkNameTag(tags);
+
+                if (name != null)
+                {
+                    displayInDialogBox(name, text);
+                }
+                else
+                {
+                    displayInDialogBox(text);
+                }
+
             }
 
-        }  
+        } 
+
+
+        
     }
 
     // Carrega os textos da historia
