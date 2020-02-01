@@ -1,8 +1,12 @@
-textoooo
+textoooo #NAME_Fulano
+ 
+textoooo 2 #NAME_Fulano #bla
+ 
+aaaa #NAME_Cicrano
 
-aaaa
-
-* choice 1
-* choice 2
+* [choice 1]
+    aaaa
+* [choice 2]
+    bbbb
 
 - final

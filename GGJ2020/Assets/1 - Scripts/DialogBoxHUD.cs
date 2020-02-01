@@ -7,11 +7,11 @@ using TMPro;
 
 public class DialogBoxHUD : MonoBehaviour
 { 
-    public TMP_Text name;
-
+    public TMP_Text namePrefab;
     public TMP_Text dialogPrefab;
     public Button choicePrefab;
 
+    private TMP_Text name;
     private TMP_Text dialog;
     private List<Button> buttons = new List<Button>();
 
@@ -33,6 +33,8 @@ public class DialogBoxHUD : MonoBehaviour
     // Mostra as informações do trexo de texto na HUD
     public void displayName(string name)
     {
+        this.name = Instantiate(namePrefab, this.transform);
+
         this.name.text = name;
     }
 
@@ -50,8 +52,6 @@ public class DialogBoxHUD : MonoBehaviour
             buttons.Add(Instantiate(choicePrefab, this.transform));
             buttons[i].transform.GetChild(0).GetComponent<TMP_Text>().text = choices[i].text;
 
-
-
             buttons[i].onClick.AddListener(GetChoiceIndex(i,choices));
         }
     }
@@ -59,6 +59,9 @@ public class DialogBoxHUD : MonoBehaviour
     // Limpa as informações para um novo trecho de código
     public void refreshDialogBox()
     {
+        if (name)
+            Destroy(name.gameObject);
+
         if (dialog)
             Destroy(dialog.gameObject);
 

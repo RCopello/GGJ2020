@@ -10,6 +10,8 @@ public class InkController : MonoBehaviour
     private Story story;
     private DialogBoxHUD HUD;
 
+    // Nao permite que o jogo troque as falas sem que a escolha seja feita
+    private bool isChoosing = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,25 +28,37 @@ public class InkController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && !isChoosing)
         {
             HUD.refreshDialogBox();
             loadStoryChunk();
         }
     }
 
-
-
     // Carrega os dialogos do Ink
     private void loadStoryChunk()
     {
+
         if (story.currentChoices.Count > 0)
         {
+            isChoosing = true;
             displayInDialogBox(story.currentChoices);
         } else
         {
-            displayInDialogBox("Fulano", loadStoryText());
-        }   
+            string text = loadStoryText();
+
+            List<string> tags = story.currentTags;
+            string name = checkNameTag(tags);
+
+            if (name != null)
+            {
+                displayInDialogBox(name, text);
+            } else
+            {
+                displayInDialogBox(text);
+            }
+
+        }  
     }
 
     // Carrega os textos da historia
@@ -54,7 +68,7 @@ public class InkController : MonoBehaviour
 
         if (story.canContinue)
         {
-            text = story.ContinueMaximally();
+            text = story.Continue();
         }
 
         return text;
@@ -64,6 +78,11 @@ public class InkController : MonoBehaviour
     private void displayInDialogBox(string name, string text)
     {
         HUD.displayName(name);
+        HUD.displayText(text);
+    }
+
+    private void displayInDialogBox(string text)
+    {
         HUD.displayText(text);
     }
 
@@ -77,8 +96,24 @@ public class InkController : MonoBehaviour
     // When we click the choice button, tell the story to choose that choice!
     public void OnClickChoiceButton(Choice choice)
     {
-        HUD.refreshDialogBox();
         story.ChooseChoiceIndex(choice.index);
+        isChoosing = false;
+        HUD.refreshDialogBox();
         loadStoryChunk();
     }
+
+    // Funcao para checar as tags
+    private string checkNameTag(List<string> tags)
+    {
+        foreach (string tag in tags)
+        {
+            if (tag.StartsWith("NAME"))
+            {
+                return tag.TrimStart("NAME_".ToCharArray());
+            }
+        }
+
+        return null;
+    }
+
 }
