@@ -6,11 +6,6 @@ public class NPCPresence : MonoBehaviour
 {
     public TextAsset NPCDialog;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        checkIfOnTrigger(collision);
-    }
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         checkIfOnTrigger(collision);

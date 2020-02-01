@@ -41,16 +41,20 @@ public class InkController : MonoBehaviour
 
     public void InitiateDialog(TextAsset textStory)
     {
-        // Pega os trechos de texto do Ink
-        story = new Story(textStory.text);
+        if (!startedDialog)
+        {
+            startedDialog = true;
 
-        loadStoryChunk();
+            // Pega os trechos de texto do Ink
+            story = new Story(textStory.text);
+
+            loadStoryChunk();
+        }  
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Return) && !isChoosing)
         {
             HUD.refreshDialogBox();
@@ -61,7 +65,7 @@ public class InkController : MonoBehaviour
     // Carrega os dialogos do Ink
     private void loadStoryChunk()
     {
-        if (story.canContinue)
+        if (story.canContinue || story.currentChoices.Count > 0)
         {
             if (story.currentChoices.Count > 0)
             {
@@ -86,10 +90,14 @@ public class InkController : MonoBehaviour
 
             }
 
-        } 
+        } else {
+            EndDialog();
+        }
 
+    }
 
-        
+    private void EndDialog() {
+        startedDialog = false;
     }
 
     // Carrega os textos da historia
