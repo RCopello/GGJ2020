@@ -5,6 +5,22 @@ using UnityEngine;
 
 public class InkController : MonoBehaviour
 {
+    #region
+
+    private static InkController instance;
+
+    public static InkController Instance { get { return instance; } }
+
+    private void Awake(){
+        if (instance != null && instance != this) {
+            Destroy(this.gameObject);
+        } else {
+            instance = this;
+        }
+    }
+
+    #endregion
+
     public TextAsset inkJSON;
 
     private Story story;
