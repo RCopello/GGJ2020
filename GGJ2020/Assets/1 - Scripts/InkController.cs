@@ -63,6 +63,7 @@ public class InkController : MonoBehaviour
     {
         if (story.canContinue)
         {
+            List<string> tags = story.currentTags;
             if (story.currentChoices.Count > 0)
             {
                 isChoosing = true;
@@ -72,7 +73,7 @@ public class InkController : MonoBehaviour
             {
                 string text = loadStoryText();
 
-                List<string> tags = story.currentTags;
+                
                 string name = checkNameTag(tags);
 
                 if (name != null)
@@ -84,7 +85,11 @@ public class InkController : MonoBehaviour
                     displayInDialogBox(text);
                 }
 
+
+
             }
+            //
+            checkEventTags(tags); //trata tags do tipo CLEARED (tem efeito colateral no ProgressSystem!)
 
         } 
 
@@ -145,6 +150,24 @@ public class InkController : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void checkEventTags(List<string> tags)
+    {
+        
+        Debug.Log(tags.Count);
+        Debug.Log(tags);
+        foreach (string tag in tags)
+        {
+            Debug.Log(tag);
+            if (tag.StartsWith("CLEARED"))
+            {
+                //Debug.Log(tag.Substring(8));
+                ProgressionSystem.Instance.MarkAsCleared(tag.Substring(8));
+            }
+        }
+
+        return;
     }
 
 }
