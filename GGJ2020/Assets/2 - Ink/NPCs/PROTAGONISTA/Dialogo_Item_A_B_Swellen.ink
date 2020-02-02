@@ -1,12 +1,13 @@
+INCLUDE ../../initialization.ink
+
 ->INICIO
 === INICIO ===
 Fala ai moça, {~suave na nave?|tranquilo como esquilo?|} -> ESCOLHAS #NAME_SUELLEN
 
-
 === ESCOLHAS ===
 *[Puxar assunto] -> ASSUNTO
-*[Mostrar Item A] -> ITEM_A
-*[Mostrar Item B] -> ITEM_B
+* {TEM_JORNAL}[Mostrar Item A] -> ITEM_A
+* {TEM_BOLA}[Mostrar Item B] -> ITEM_B
 +[Vazar] -> FIM
 
 
