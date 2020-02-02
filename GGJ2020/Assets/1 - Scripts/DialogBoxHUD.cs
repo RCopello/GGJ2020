@@ -26,6 +26,7 @@ public class DialogBoxHUD : MonoBehaviour
 
             InkController inkControl = this.GetComponent<InkController>();
 
+            Debug.Log(i);
             inkControl.OnClickChoiceButton(choices[i]);
         };
     }
@@ -66,9 +67,8 @@ public class DialogBoxHUD : MonoBehaviour
 
         foreach(Button button in buttons)
         {
-            if(button) Destroy(button.gameObject);
+            Destroy(button.gameObject);
         }
-        buttons.Clear();
     }
 
     

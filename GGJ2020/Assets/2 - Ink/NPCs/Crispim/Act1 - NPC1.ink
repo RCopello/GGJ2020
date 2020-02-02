@@ -1,10 +1,7 @@
-INCLUDE ../../../inicialization.ink
-
 Eu sou o NPC 1 #NAME_NPC 1
 Coe #NAME_NPC 1
 
 * [Coe]
-    Coe tudo sussa? #NAME_Protagonista
+    Coe tudo sussa? #NAME_Protagonista #CLEARED_NPC1
 * [Tchau]
-    Tchau. #GIVE_Antena #NAME_Protagonista
-    ~CAN_NEXT_ACT = 1
+    Tchau.  #NAME_Protagonista
