@@ -31,6 +31,7 @@ public class InkController : MonoBehaviour
 
     // Nao permite que o jogo troque as falas sem que a escolha seja feita
     private bool isChoosing = false;
+    private bool justStarted;
 
     // Nao permite que se começa um dialogo com o mesmo NPC quando a conversa já começou
     private bool startedDialog = false;
@@ -46,6 +47,7 @@ public class InkController : MonoBehaviour
 
         //InitiateDialog(inkJSON);
         breakDialog = false;
+        justStarted = false;
 
         var story2 = new Story(inkInitializationScript.text);
         InkState = story2.state.ToJson();
@@ -56,6 +58,7 @@ public class InkController : MonoBehaviour
         if (!startedDialog)
         {
             startedDialog = true;
+            justStarted = true;
             Player.GetComponent<PlayerMovement>().canMove = false;
 
             // Pega os trechos de texto do Ink
@@ -84,7 +87,7 @@ public class InkController : MonoBehaviour
 
         if ((story.canContinue || story.currentChoices.Count > 0) && !breakDialog)
         {
-            
+            justStarted = false;
             if (story.currentChoices.Count > 0)
             {
                 isChoosing = true;
@@ -186,7 +189,7 @@ public class InkController : MonoBehaviour
                 //Debug.Log(tag.Substring(8));
                 ProgressionSystem.Instance.MarkAsCleared(tag.Substring(8));
             }
-            if (tag.StartsWith("END_DIALOGUE"))
+            if (tag.StartsWith("END_DIALOGUE") && !justStarted)
             {
                 breakDialog = true;
             }
