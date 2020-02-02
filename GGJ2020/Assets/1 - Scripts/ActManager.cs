@@ -8,6 +8,7 @@ public class ActManager : MonoBehaviour
     public static ActManager Instance { get; private set;}
     private List<GameObject> acts;
 
+    public bool canGoToNextAct;
 
     private int currentAct;
     [Tooltip("Setar aqui o ato inicial pra poder testar! Indexado em 0! Não avacalhem!")]
