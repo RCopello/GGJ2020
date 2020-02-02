@@ -46,14 +46,15 @@ public class InkController : MonoBehaviour
     private void LoadState()
     {
         
-        // if (inkDict != null)
-        // {      
-        //     foreach(KeyValuePair<string, int> entry in inkDict)
-        //     {
-        //         story.variablesState[entry.Key] = entry.Value;
+        if (inkDict != null)
+        {      
+            foreach(KeyValuePair<string, int> entry in inkDict)
+            {
+                story.variablesState[entry.Key] = entry.Value;
                 
-        //     }
-        // }
+            }
+        }
+
 
         Dictionary<string, bool> contains = new Dictionary<string, bool>();
         foreach(string var in story.variablesState)
@@ -66,6 +67,11 @@ public class InkController : MonoBehaviour
             {
                 story.variablesState[entry] = ProgressionSystem.Instance.IsObjectInInventory(entry) ? 1 : 0;
             }
+        }
+
+        if (contains.ContainsKey("CAN_NEXT_ACT"))
+        {
+            story.variablesState["CAN_NEXT_ACT"] = ActManager.Instance.canGoToNextAct ? 1 : 0;
         }
     }
 
@@ -170,7 +176,6 @@ public class InkController : MonoBehaviour
         SaveState();
 
         Player.GetComponent<PlayerMovement>().canMove = true;
-        FMODManager.Instance.SetMusicParameter(1);
     }
 
     // Carrega os textos da historia
@@ -251,7 +256,7 @@ public class InkController : MonoBehaviour
             }
             if (tag.StartsWith("CanGoToNextScene"))
             {
-                ActManager.Instance.canGoToNextAct = true;
+                ActManager.Instance.NextAct();
             }
         }
 

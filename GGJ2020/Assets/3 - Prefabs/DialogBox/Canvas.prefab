@@ -971,6 +971,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6642d43b1571f4b859e020ccb63428bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BoxArt: {fileID: 1626715638}
+  EnterButton: {fileID: 21300000, guid: 3cd3a876e6ad643a3a62d040ff314da8, type: 3}
+  ClickButton: {fileID: 21300000, guid: 132ce8287999741bd83ea5a535844918, type: 3}
   namePrefab: {fileID: 865938145945850548, guid: 67407279fd71c4a1ea35fa7508f54807,
     type: 3}
   dialogPrefab: {fileID: 2420927631244314172, guid: 319ef632e8bf941db9d3684a30626193,
