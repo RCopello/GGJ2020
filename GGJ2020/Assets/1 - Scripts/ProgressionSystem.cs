@@ -59,9 +59,11 @@ public class ProgressionSystem : MonoBehaviour
 
     public void MarkObjectAsAcquired(string objects_names)
     {
+        Debug.Log(objects_names);
         if (objects_acquired.ContainsKey(objects_names))
         {
             objects_acquired[objects_names] = true;
+            Inventory.Instance.UpdateInventory();
         }
         else
         {
@@ -74,11 +76,17 @@ public class ProgressionSystem : MonoBehaviour
         if (objects_retrived.ContainsKey(objects_names))
         {
             objects_retrived[objects_names] = true;
+            Inventory.Instance.UpdateInventory();
         }
         else
         {
             Debug.LogWarning("INVALID CHARACTER NAME \"" + objects_names + "\" passed to mark as cleared. Please check for typos.");
         }
+    }
+
+    public bool IsObjectInInventory(string object_name)
+    {
+        return objects_acquired.ContainsKey(object_name) && objects_acquired[object_name] && (!objects_retrived.ContainsKey(object_name) || !objects_retrived[object_name]);
     }
 
 }

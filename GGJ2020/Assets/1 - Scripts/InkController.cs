@@ -8,7 +8,6 @@ public class InkController : MonoBehaviour
     #region
 
     private static InkController instance;
-
     public static InkController Instance { get { return instance; } }
 
     private void Awake(){
@@ -20,6 +19,8 @@ public class InkController : MonoBehaviour
     }
 
     #endregion
+
+    private bool breakDialog;
 
     public GameObject Player;
 
@@ -41,6 +42,7 @@ public class InkController : MonoBehaviour
         HUD = this.GetComponent<DialogBoxHUD>();
 
         //InitiateDialog(inkJSON);
+        breakDialog = false;
     }
 
     public void InitiateDialog(TextAsset textStory, bool isObject)
@@ -81,7 +83,7 @@ public class InkController : MonoBehaviour
     // Carrega os dialogos do Ink
     private void loadStoryChunk()
     {
-        if (story.canContinue || story.currentChoices.Count > 0)
+        if (story.canContinue || story.currentChoices.Count > 0 || breakDialog)
         {
             List<string> tags = story.currentTags;
             if (story.currentChoices.Count > 0)
@@ -127,6 +129,7 @@ public class InkController : MonoBehaviour
         }
 
         startedDialog = false;
+        breakDialog = false;
         Player.GetComponent<PlayerMovement>().canMove = true;
     }
 
@@ -194,6 +197,11 @@ public class InkController : MonoBehaviour
                 //Debug.Log(tag.Substring(8));
                 ProgressionSystem.Instance.MarkAsCleared(tag.Substring(8));
             }
+            if (tag.StartsWith("BREAK_DIALOGUE"))
+            {
+                breakDialog = true;
+            }
+            
         }
 
         return;

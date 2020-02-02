@@ -66,8 +66,9 @@ public class DialogBoxHUD : MonoBehaviour
 
         foreach(Button button in buttons)
         {
-            Destroy(button.gameObject);
+            if(button) Destroy(button.gameObject);
         }
+        buttons.Clear();
     }
 
     
