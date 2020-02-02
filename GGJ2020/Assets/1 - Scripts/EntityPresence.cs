@@ -16,10 +16,10 @@ public class EntityPresence : MonoBehaviour
     // fazo  trigger do NPC
     private void checkIfOnTrigger(Collider2D collision)
     {
-        Debug.Log("check trigger");
+        //Debug.Log("check trigger");
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("keycode E");
+            //Debug.Log("keycode E");
             if (collision.CompareTag("Player"))
             {
                 // Trigga o dialogo

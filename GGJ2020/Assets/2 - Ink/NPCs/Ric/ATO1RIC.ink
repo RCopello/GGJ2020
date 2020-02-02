@@ -75,8 +75,7 @@ Valeu mesmo Renatinha! Tu é top demais! #NAME_RICSOARES
 ->FIM
 
 === FIM ===
-#END_DIALOGUE
-Então tchau #NAME_RICSOARES 
+Então tchau #NAME_RICSOARES #END_DIALOGUE
 ->INTRO
 
 

@@ -34,14 +34,14 @@ public class DialogBoxHUD : MonoBehaviour
     // Mostra as informações do trexo de texto na HUD
     public void displayName(string name)
     {
-        this.name = Instantiate(namePrefab, this.transform);
+        this.name = Instantiate(namePrefab, InkController.Instance.ArteCaixa.transform);
 
         this.name.text = name;
     }
 
     public void displayText(string text)
     {
-        dialog = Instantiate(dialogPrefab, this.transform);
+        dialog = Instantiate(dialogPrefab, InkController.Instance.ArteCaixa.transform);
         
         this.dialog.text = text;
     }
@@ -50,7 +50,7 @@ public class DialogBoxHUD : MonoBehaviour
     {
         for (int i = 0; i < choices.Count; i++)
         {
-            buttons.Add(Instantiate(choicePrefab, this.transform));
+            buttons.Add(Instantiate(choicePrefab, InkController.Instance.ArteCaixa.transform));
             buttons[i].transform.GetChild(0).GetComponent<TMP_Text>().text = choices[i].text;
             buttons[i].onClick.AddListener(GetChoiceIndex(i,choices));
         }
