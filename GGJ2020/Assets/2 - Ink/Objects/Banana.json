@@ -1,1 +1,1 @@
-﻿{"inkVersion":19,"root":[["^Você achou uma banana. ",{"#":"GRAB_Banana"},"\n",["done",{"#f":5,"#n":"g-0"}],null],"done",{"#f":1}],"listDefs":{}}
+﻿{"inkVersion":19,"root":[[{"->":"INICIO_BANANA"},["done",{"#f":5,"#n":"g-0"}],null],"done",{"INICIO_BANANA":[["ev","str","^Olha só!","/str","/ev",{"*":".^.c-0","flg":4},{"c-0":["^ ",{"->":"FIM"},"\n",{"#f":5}]}],{"#f":1}],"FIM":["^Você achou uma banana.","\n",{"#":"GRAB_Banana"},{"#":"END_DIALOGUE"},{"->":"INICIO_BANANA"},{"#f":1}],"#f":1}],"listDefs":{}}

@@ -39,6 +39,42 @@ public class InkController : MonoBehaviour
     public TextAsset inkInitializationScript;
     private string InkState;
 
+    private Dictionary<string, int> inkDict;
+
+    private void LoadState()
+    {
+        
+        if (inkDict != null)
+        {      
+            foreach(KeyValuePair<string, int> entry in inkDict)
+            {
+                story.variablesState[entry.Key] = entry.Value;
+                
+            }
+        }
+        Dictionary<string, bool> contains = new Dictionary<string, bool>();
+        foreach(string var in story.variablesState)
+        {
+            contains[var] = true;
+        }
+        foreach(string entry in ProgressionSystem.Instance.objects_names)
+        {
+            if(contains.ContainsKey(entry))
+            {
+                story.variablesState[entry] = ProgressionSystem.Instance.IsObjectInInventory(entry) ? 1 : 0;
+            }
+        }
+    }
+
+    private void SaveState()
+    {
+        inkDict = new Dictionary<string, int>();
+        foreach(string entry in story.variablesState)
+        {
+           inkDict[entry] = (int) story.variablesState[entry];
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,7 +99,8 @@ public class InkController : MonoBehaviour
 
             // Pega os trechos de texto do Ink
             story = new Story(textStory.text);
-            story.state.LoadJson(InkState);
+            LoadState();
+            //story.state.LoadJson(InkState);
 
             loadStoryChunk();    
         }  
@@ -120,7 +157,7 @@ public class InkController : MonoBehaviour
         breakDialog = false;
 
         //salva estado
-        InkState = story.state.ToJson();
+        SaveState();
 
         Player.GetComponent<PlayerMovement>().canMove = true;
     }
