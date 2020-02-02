@@ -31,7 +31,7 @@ public class ActManager : MonoBehaviour
         acts = new List<GameObject>();
         foreach (Transform t in transform)
         {
-            Debug.Log(t);
+            //Debug.Log(t);
             acts.Add(t.gameObject);
         }
 

@@ -83,9 +83,11 @@ public class InkController : MonoBehaviour
     // Carrega os dialogos do Ink
     private void loadStoryChunk()
     {
-        if (story.canContinue || story.currentChoices.Count > 0 || breakDialog)
+        //trata tags do tipo CLEARED (tem efeito colateral no ProgressSystem!)
+        List<string> tags = story.currentTags;
+        checkEventTags(tags);
+        if ((story.canContinue || story.currentChoices.Count > 0) && !breakDialog)
         {
-            List<string> tags = story.currentTags;
             if (story.currentChoices.Count > 0)
             {
                 isChoosing = true;
@@ -94,8 +96,6 @@ public class InkController : MonoBehaviour
             else
             {
                 string text = loadStoryText();
-
-                
                 string name = checkNameTag(tags);
 
                 if (name != null)
@@ -106,14 +106,11 @@ public class InkController : MonoBehaviour
                 {
                     displayInDialogBox(text);
                 }
-
-
-
             }
             //
-            checkEventTags(tags); //trata tags do tipo CLEARED (tem efeito colateral no ProgressSystem!)
 
         } else {
+            Debug.Log("else");
             EndDialog();
         }
 
@@ -169,9 +166,9 @@ public class InkController : MonoBehaviour
     public void OnClickChoiceButton(Choice choice)
     {
         story.ChooseChoiceIndex(choice.index);
-        isChoosing = false;
         HUD.refreshDialogBox();
         loadStoryChunk();
+        isChoosing = false;
     }
 
     // Funcao para checar as tags
@@ -190,6 +187,7 @@ public class InkController : MonoBehaviour
 
     private void checkEventTags(List<string> tags)
     {
+        Debug.Log(tags);
         foreach (string tag in tags)
         {
             if (tag.StartsWith("CLEARED"))
@@ -197,8 +195,10 @@ public class InkController : MonoBehaviour
                 //Debug.Log(tag.Substring(8));
                 ProgressionSystem.Instance.MarkAsCleared(tag.Substring(8));
             }
-            if (tag.StartsWith("BREAK_DIALOGUE"))
+            Debug.Log(tag);
+            if (tag.StartsWith("END_DIALOGUE"))
             {
+                Debug.Log("break");
                 breakDialog = true;
             }
             
