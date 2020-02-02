@@ -19,7 +19,7 @@ public class EntityPresence : MonoBehaviour
         //Debug.Log("check trigger");
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("keycode E");
+            //Debug.Log("keycode E");
             if (collision.CompareTag("Player"))
             {
                 // Trigga o dialogo

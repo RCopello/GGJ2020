@@ -22,6 +22,8 @@ public class InkController : MonoBehaviour
 
     private bool breakDialog;
 
+    public GameObject ArteCaixa;
+
     public GameObject Player;
 
     public TextAsset inkJSON;
@@ -57,6 +59,8 @@ public class InkController : MonoBehaviour
     {
         if (!startedDialog)
         {
+            ArteCaixa.SetActive(true);
+
             startedDialog = true;
             justStarted = true;
             Player.GetComponent<PlayerMovement>().canMove = false;
@@ -85,8 +89,10 @@ public class InkController : MonoBehaviour
         List<string> tags = story.currentTags;
         checkEventTags(tags); //trata tags do tipo CLEARED (tem efeito colateral no ProgressSystem!)
 
+        Debug.Log("pode continuar?" + story.canContinue);
         if ((story.canContinue || story.currentChoices.Count > 0) && !breakDialog)
         {
+            Debug.Log("A saga continua");
             justStarted = false;
             if (story.currentChoices.Count > 0)
             {
@@ -109,12 +115,15 @@ public class InkController : MonoBehaviour
             }
 
         } else {
+            Debug.Log("O fim");
             EndDialog();
         }
 
     }
 
     private void EndDialog() {
+
+        ArteCaixa.SetActive(false);
 
         startedDialog = false;
         breakDialog = false;
