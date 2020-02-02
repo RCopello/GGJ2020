@@ -1,5 +1,20 @@
+INCLUDE initialization.ink
+->INTRO
+=== INTRO ===
+INTRO: Olá como vai? (...)
+->ESCOLHAS
 
-=== ITEM_A ===
+=== ESCOLHAS ===
++ [Puxar papo] -> PADRAO
+* {TEM_CELULAR}[Mostrar Celular] -> ITEM_CELULAR
+* {TEM_BANANA}[Mostrar Banana] -> ITEM_BANANA
++[Vazar] -> FIM
+
+=== PADRAO ===
+papinho padrão
+->ESCOLHAS
+
+=== ITEM_CELULAR ===
 
 CARACA DOIDONA...Onde você conseguiu esse paparazi? Cuidado para não ficar gamadona no papai aqui ;)  #NAME_RICSOARES
 
@@ -24,9 +39,9 @@ Valeu mesmo Renatinha, tu é mais que uma irmã, tu é uma sister!
 (Ai...ai...bem, pelo menos tenho menos um suspeito na lista, valeu Michel, mal te conheço mas já te considero pacas)
 #NAME_PROTAGONISTA
 
--> DONE
+-> FIM
 
-=== ITEM_B ===
+=== ITEM_BANANA ===
 
 Pô brigadão adoro banana, mas já almocei! #NAME_RICSOARES
 
@@ -56,6 +71,12 @@ Meu Santo Rafael! Só podia ser um motivo besta desses, nunca duvidei das minha 
 Valeu mesmo Renatinha! Tu é top demais! #NAME_RICSOARES
 
 (Renata só vê Ric correndo sorrindo e gritando MANHÊEEEE enquanto se distancia...) 
+
+->FIM
+
+=== FIM ===
+Então tchau #NAME_RICSOARES #END_DIALOGUE
+->INTRO
 
 
 
