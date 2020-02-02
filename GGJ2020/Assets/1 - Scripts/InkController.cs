@@ -21,6 +21,8 @@ public class InkController : MonoBehaviour
 
     #endregion
 
+    public GameObject Player;
+
     public TextAsset inkJSON;
 
     private Story story;
@@ -36,7 +38,9 @@ public class InkController : MonoBehaviour
     void Start()
     {
         // Pega referencia da HUD
-        HUD = this.GetComponent<DialogBoxHUD>(); 
+        HUD = this.GetComponent<DialogBoxHUD>();
+
+        InitiateDialog(inkJSON);
     }
 
     public void InitiateDialog(TextAsset textStory)
@@ -44,6 +48,7 @@ public class InkController : MonoBehaviour
         if (!startedDialog)
         {
             startedDialog = true;
+            Player.GetComponent<PlayerMovement>().canMove = false;
 
             // Pega os trechos de texto do Ink
             story = new Story(textStory.text);
@@ -55,7 +60,7 @@ public class InkController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && !isChoosing)
+        if (Input.GetKeyDown(KeyCode.Return) && !isChoosing && startedDialog)
         {
             HUD.refreshDialogBox();
             loadStoryChunk();
@@ -98,6 +103,7 @@ public class InkController : MonoBehaviour
 
     private void EndDialog() {
         startedDialog = false;
+        Player.GetComponent<PlayerMovement>().canMove = true;
     }
 
     // Carrega os textos da historia
@@ -152,7 +158,7 @@ public class InkController : MonoBehaviour
             }
         }
 
-        return null;
+        return "";
     }
 
 }

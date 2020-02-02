@@ -18,8 +18,6 @@ public class NPCPresence : MonoBehaviour
         {
             if (collision.CompareTag("Player"))
             {
-                // Para de andar
-
                 // Trigga o dialogo
                 InkController.Instance.InitiateDialog(NPCDialog);
 
