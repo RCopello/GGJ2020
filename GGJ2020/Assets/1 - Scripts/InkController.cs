@@ -45,7 +45,7 @@ public class InkController : MonoBehaviour
         breakDialog = false;
     }
 
-    public void InitiateDialog(TextAsset textStory, bool isObject)
+    public void InitiateDialog(TextAsset textStory)
     {
         if (!startedDialog)
         {
@@ -55,18 +55,7 @@ public class InkController : MonoBehaviour
             // Pega os trechos de texto do Ink
             story = new Story(textStory.text);
 
-            loadStoryChunk();
-
-            if (isObject)
-            {
-                string objectName = checkGrabTag(story.currentTags);
-
-                if (objectName != null)
-                {
-                    ProgressionSystem.Instance.MarkObjectAsAcquired(objectName);
-                }
-            }
-                
+            loadStoryChunk();    
         }  
     }
 
@@ -83,11 +72,12 @@ public class InkController : MonoBehaviour
     // Carrega os dialogos do Ink
     private void loadStoryChunk()
     {
-        //trata tags do tipo CLEARED (tem efeito colateral no ProgressSystem!)
         List<string> tags = story.currentTags;
-        checkEventTags(tags);
+        checkEventTags(tags); //trata tags do tipo CLEARED (tem efeito colateral no ProgressSystem!)
+
         if ((story.canContinue || story.currentChoices.Count > 0) && !breakDialog)
         {
+            
             if (story.currentChoices.Count > 0)
             {
                 isChoosing = true;
@@ -107,23 +97,14 @@ public class InkController : MonoBehaviour
                     displayInDialogBox(text);
                 }
             }
-            //
 
         } else {
-            Debug.Log("else");
             EndDialog();
         }
 
     }
 
     private void EndDialog() {
-
-        string objectName = checkGetTag(story.currentTags);
-
-        if(objectName != null)
-        {
-            ProgressionSystem.Instance.MarkObjectAsRetrieved(objectName);
-        }
 
         startedDialog = false;
         breakDialog = false;
@@ -166,9 +147,9 @@ public class InkController : MonoBehaviour
     public void OnClickChoiceButton(Choice choice)
     {
         story.ChooseChoiceIndex(choice.index);
+        isChoosing = false;
         HUD.refreshDialogBox();
         loadStoryChunk();
-        isChoosing = false;
     }
 
     // Funcao para checar as tags
@@ -187,7 +168,6 @@ public class InkController : MonoBehaviour
 
     private void checkEventTags(List<string> tags)
     {
-        Debug.Log(tags);
         foreach (string tag in tags)
         {
             if (tag.StartsWith("CLEARED"))
@@ -195,42 +175,22 @@ public class InkController : MonoBehaviour
                 //Debug.Log(tag.Substring(8));
                 ProgressionSystem.Instance.MarkAsCleared(tag.Substring(8));
             }
-            Debug.Log(tag);
-            if (tag.StartsWith("END_DIALOGUE"))
+            if (tag.StartsWith("BREAK_DIALOGUE"))
             {
-                Debug.Log("break");
                 breakDialog = true;
             }
-            
+            if (tag.StartsWith("GRAB"))
+            {
+                ProgressionSystem.Instance.MarkObjectAsAcquired(tag.Remove(0, 5));
+            }
+            if (tag.StartsWith("GIVE"))
+            {
+                ProgressionSystem.Instance.MarkObjectAsRetrieved(tag.Remove(0, 5));
+            }
+
         }
 
         return;
-    }
-
-    private string checkGrabTag(List<string> tags)
-    {
-        foreach (string tag in tags)
-        {
-            if (tag.StartsWith("GRAB"))
-            {
-                return tag.Remove(0, 5);
-            }
-        }
-
-        return null;
-    }
-
-    private string checkGetTag(List<string> tags)
-    {
-        foreach (string tag in tags)
-        {
-            if (tag.StartsWith("GET"))
-            {
-                return tag.Remove(0, 4);
-            }
-        }
-
-        return null;
     }
 
 }

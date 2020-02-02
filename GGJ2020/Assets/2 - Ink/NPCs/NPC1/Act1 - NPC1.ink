@@ -4,4 +4,4 @@ Coe #NAME_NPC 1
 * [Coe]
     Coe tudo sussa? #NAME_Protagonista
 * [Tchau]
-    Tchau.  #NAME_Protagonista #GET_batata
+    Tchau. #GIVE_batata #NAME_Protagonista
