@@ -46,14 +46,15 @@ public class InkController : MonoBehaviour
     private void LoadState()
     {
         
-        if (inkDict != null)
-        {      
-            foreach(KeyValuePair<string, int> entry in inkDict)
-            {
-                story.variablesState[entry.Key] = entry.Value;
+        // if (inkDict != null)
+        // {      
+        //     foreach(KeyValuePair<string, int> entry in inkDict)
+        //     {
+        //         story.variablesState[entry.Key] = entry.Value;
                 
-            }
-        }
+        //     }
+        // }
+
         Dictionary<string, bool> contains = new Dictionary<string, bool>();
         foreach(string var in story.variablesState)
         {
@@ -169,6 +170,7 @@ public class InkController : MonoBehaviour
         SaveState();
 
         Player.GetComponent<PlayerMovement>().canMove = true;
+        FMODManager.Instance.SetMusicParameter(1);
     }
 
     // Carrega os textos da historia
