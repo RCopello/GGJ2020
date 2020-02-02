@@ -1,20 +1,30 @@
-INCLUDE initialization.ink
+RIC SOARES ATO 1
+
+VAR Banana = 0
+VAR Celular = 0
+
 ->INTRO
 === INTRO ===
-INTRO: Olá como vai? (...)
+Falaaa Renatinha, tudo em cima?
 ->ESCOLHAS
 
 === ESCOLHAS ===
 + [Puxar papo] -> PADRAO
-* {TEM_CELULAR}[Mostrar Celular] -> ITEM_CELULAR
-* {TEM_BANANA}[Mostrar Banana] -> ITEM_BANANA
-+[Vazar] -> FIM
+* {Celular}[Mostrar Celular] -> ITEM_A
+* {Banana}[Mostrar Banana] -> ITEM_B
++ {ITEM_A} [Falar do celular] -> ITEM_A_TERMINADO
++ {ITEM_B} [Falar da banana] -> ITEM_B_TERMINADO
++[Meter o pé] -> FIM
+
+
 
 === PADRAO ===
-papinho padrão
+
+Esse Toninho me paga, desgraçado. Vacilão morre cedo! #NAME_RICSOARES
+
 ->ESCOLHAS
 
-=== ITEM_CELULAR ===
+=== ITEM_A ===
 
 CARACA DOIDONA...Onde você conseguiu esse paparazi? Cuidado para não ficar gamadona no papai aqui ;)  #NAME_RICSOARES
 
@@ -39,9 +49,17 @@ Valeu mesmo Renatinha, tu é mais que uma irmã, tu é uma sister!
 (Ai...ai...bem, pelo menos tenho menos um suspeito na lista, valeu Michel, mal te conheço mas já te considero pacas)
 #NAME_PROTAGONISTA
 
+#GIVE_Celular
+
 -> FIM
 
-=== ITEM_BANANA ===
+=== ITEM_A_TERMINADO ===
+
+Nunca vou esquecer o que tu fez por mim sister! #NAME_RICSOARES
+
+-> ESCOLHAS
+
+=== ITEM_B ===
 
 Pô brigadão adoro banana, mas já almocei! #NAME_RICSOARES
 
@@ -72,11 +90,23 @@ Valeu mesmo Renatinha! Tu é top demais! #NAME_RICSOARES
 
 (Renata só vê Ric correndo sorrindo e gritando MANHÊEEEE enquanto se distancia...) 
 
+
 ->FIM
 
+=== ITEM_B_TERMINADO ===
+
+Acho que logo logo o João vai poder empinar as motocas comigo de novo! #NAME_RICSOARES
+
+-> ESCOLHAS
+
 === FIM ===
-Então tchau #NAME_RICSOARES #END_DIALOGUE
+Nóiz se vê por ai! #NAME_RICSOARES #END_DIALOGUE
 ->INTRO
+
+
+
+
+
 
 
 

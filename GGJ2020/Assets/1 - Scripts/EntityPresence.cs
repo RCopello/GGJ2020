@@ -22,11 +22,11 @@ public class EntityPresence : MonoBehaviour
             //Debug.Log("keycode E");
             if (collision.CompareTag("Player"))
             {
+                if (isObject)
+                    Destroy(this.gameObject);
                 // Trigga o dialogo
                 Debug.Log("call initiate dialog");
                 InkController.Instance.InitiateDialog(NPCDialog);
-                if(isObject)
-                    Destroy(this.gameObject);
 
             }
         }

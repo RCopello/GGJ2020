@@ -45,17 +45,6 @@ public class InkController : MonoBehaviour
 
     private void LoadState()
     {
-        
-        if (inkDict != null)
-        {      
-            foreach(KeyValuePair<string, int> entry in inkDict)
-            {
-                story.variablesState[entry.Key] = entry.Value;
-                
-            }
-        }
-
-
         Dictionary<string, bool> contains = new Dictionary<string, bool>();
         foreach(string var in story.variablesState)
         {
@@ -133,10 +122,8 @@ public class InkController : MonoBehaviour
         List<string> tags = story.currentTags;
         checkEventTags(tags); //trata tags do tipo CLEARED (tem efeito colateral no ProgressSystem!)
 
-        Debug.Log("pode continuar?" + story.canContinue);
         if ((story.canContinue || story.currentChoices.Count > 0) && !breakDialog)
         {
-            Debug.Log("A saga continua");
             justStarted = false;
             if (story.currentChoices.Count > 0)
             {
@@ -159,7 +146,6 @@ public class InkController : MonoBehaviour
             }
 
         } else {
-            Debug.Log("O fim");
             EndDialog();
         }
 
