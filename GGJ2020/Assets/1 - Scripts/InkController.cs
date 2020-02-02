@@ -174,6 +174,7 @@ public class InkController : MonoBehaviour
 
         //salva estado
         SaveState();
+        FMODManager.Instance.SetMusicParameter(1);
 
         Player.GetComponent<PlayerMovement>().canMove = true;
     }
