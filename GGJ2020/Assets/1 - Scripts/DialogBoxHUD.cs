@@ -69,6 +69,7 @@ public class DialogBoxHUD : MonoBehaviour
         {
             Destroy(button.gameObject);
         }
+        buttons.Clear();
     }
 
     

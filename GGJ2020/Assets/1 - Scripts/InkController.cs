@@ -8,7 +8,6 @@ public class InkController : MonoBehaviour
     #region
 
     private static InkController instance;
-
     public static InkController Instance { get { return instance; } }
 
     private void Awake(){
@@ -21,6 +20,10 @@ public class InkController : MonoBehaviour
 
     #endregion
 
+    private bool breakDialog;
+
+    public GameObject Player;
+
     public TextAsset inkJSON;
 
     private Story story;
@@ -32,26 +35,41 @@ public class InkController : MonoBehaviour
     // Nao permite que se começa um dialogo com o mesmo NPC quando a conversa já começou
     private bool startedDialog = false;
 
+    public TextAsset inkInitializationScript;
+    private string InkState;
+
     // Start is called before the first frame update
     void Start()
     {
         // Pega referencia da HUD
-        HUD = this.GetComponent<DialogBoxHUD>(); 
+        HUD = this.GetComponent<DialogBoxHUD>();
+
+        //InitiateDialog(inkJSON);
+        breakDialog = false;
+
+        var story2 = new Story(inkInitializationScript.text);
+        InkState = story2.state.ToJson();
     }
 
     public void InitiateDialog(TextAsset textStory)
     {
-        // Pega os trechos de texto do Ink
-        story = new Story(textStory.text);
+        if (!startedDialog)
+        {
+            startedDialog = true;
+            Player.GetComponent<PlayerMovement>().canMove = false;
 
-        loadStoryChunk();
+            // Pega os trechos de texto do Ink
+            story = new Story(textStory.text);
+            story.state.LoadJson(InkState);
+
+            loadStoryChunk();    
+        }  
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Return) && !isChoosing)
+        if (Input.GetKeyDown(KeyCode.Return) && !isChoosing && startedDialog)
         {
             HUD.refreshDialogBox();
             loadStoryChunk();
@@ -61,8 +79,12 @@ public class InkController : MonoBehaviour
     // Carrega os dialogos do Ink
     private void loadStoryChunk()
     {
-        if (story.canContinue)
+        List<string> tags = story.currentTags;
+        checkEventTags(tags); //trata tags do tipo CLEARED (tem efeito colateral no ProgressSystem!)
+
+        if ((story.canContinue || story.currentChoices.Count > 0) && !breakDialog)
         {
+            
             if (story.currentChoices.Count > 0)
             {
                 isChoosing = true;
@@ -71,8 +93,6 @@ public class InkController : MonoBehaviour
             else
             {
                 string text = loadStoryText();
-
-                List<string> tags = story.currentTags;
                 string name = checkNameTag(tags);
 
                 if (name != null)
@@ -83,13 +103,23 @@ public class InkController : MonoBehaviour
                 {
                     displayInDialogBox(text);
                 }
-
             }
 
-        } 
+        } else {
+            EndDialog();
+        }
 
+    }
 
-        
+    private void EndDialog() {
+
+        startedDialog = false;
+        breakDialog = false;
+
+        //salva estado
+        InkState = story.state.ToJson();
+
+        Player.GetComponent<PlayerMovement>().canMove = true;
     }
 
     // Carrega os textos da historia
@@ -144,7 +174,37 @@ public class InkController : MonoBehaviour
             }
         }
 
-        return null;
+        return "";
+    }
+
+    private void checkEventTags(List<string> tags)
+    {
+        foreach (string tag in tags)
+        {
+            if (tag.StartsWith("CLEARED"))
+            {
+                //Debug.Log(tag.Substring(8));
+                ProgressionSystem.Instance.MarkAsCleared(tag.Substring(8));
+            }
+            if (tag.StartsWith("END_DIALOGUE"))
+            {
+                breakDialog = true;
+            }
+            if (tag.StartsWith("GRAB"))
+            {
+                ProgressionSystem.Instance.MarkObjectAsAcquired(tag.Remove(0, 5));
+            }
+            if (tag.StartsWith("GIVE"))
+            {
+                ProgressionSystem.Instance.MarkObjectAsRetrieved(tag.Remove(0, 5));
+            }
+            if (tag.StartsWith("CanGoToNextScene"))
+            {
+                ActManager.Instance.canGoToNextAct = true;
+            }
+        }
+
+        return;
     }
 
 }
