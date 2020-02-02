@@ -1261,7 +1261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9982be0d5ae04228b567c14805b0ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPCDialog: {fileID: 4900000, guid: 4bc53228b3eaa4084bba3982d4666dd3, type: 3}
+  NPCDialog: {fileID: 4900000, guid: 51555c599344d48d0acc526492c85e24, type: 3}
   isObject: 0
 --- !u!1 &1566795441
 GameObject:

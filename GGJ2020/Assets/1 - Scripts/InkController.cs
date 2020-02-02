@@ -73,6 +73,7 @@ public class InkController : MonoBehaviour
     private void loadStoryChunk()
     {
         List<string> tags = story.currentTags;
+        checkEventTags(tags); //trata tags do tipo CLEARED (tem efeito colateral no ProgressSystem!)
 
         if ((story.canContinue || story.currentChoices.Count > 0) && !breakDialog)
         {
@@ -97,13 +98,10 @@ public class InkController : MonoBehaviour
                 }
             }
 
-            checkEventTags(tags); //trata tags do tipo CLEARED (tem efeito colateral no ProgressSystem!)
-
         } else {
             EndDialog();
         }
 
-        checkGrabGiveTag(tags);
     }
 
     private void EndDialog() {
@@ -172,7 +170,6 @@ public class InkController : MonoBehaviour
     {
         foreach (string tag in tags)
         {
-            Debug.Log(tag);
             if (tag.StartsWith("CLEARED"))
             {
                 //Debug.Log(tag.Substring(8));
@@ -182,27 +179,18 @@ public class InkController : MonoBehaviour
             {
                 breakDialog = true;
             }
-           
-        }
-
-        return;
-    }
-
-    private void checkGrabGiveTag(List<string> tags)
-    {
-        foreach (string tag in tags)
-        {
             if (tag.StartsWith("GRAB"))
             {
                 ProgressionSystem.Instance.MarkObjectAsAcquired(tag.Remove(0, 5));
             }
             if (tag.StartsWith("GIVE"))
             {
-                Debug.Log("asddfsf");
                 ProgressionSystem.Instance.MarkObjectAsRetrieved(tag.Remove(0, 5));
             }
+
         }
 
+        return;
     }
 
 }
