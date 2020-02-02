@@ -20,7 +20,7 @@ Que seu dia em Rudânit seja maravilhoso! Converse com nossos amáveis residente
 
 === FINAL ===
 
-Está pronto para o segundo dia?
+Está pronto para o segundo dia? #CanGoToNextScene
 
 -> FIM
 
