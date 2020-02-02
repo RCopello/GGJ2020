@@ -60,9 +60,9 @@ public class ActManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            NextAct();
-        }
+        // if(Input.GetKeyDown(KeyCode.E))
+        // {
+        //     NextAct();
+        // }
     }
 }
