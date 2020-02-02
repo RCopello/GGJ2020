@@ -1,0 +1,1 @@
+dvsdgs #NAME_NPC4 #GIVE_Foto

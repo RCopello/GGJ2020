@@ -5,7 +5,9 @@ using UnityEngine;
 //um sisteminha pra lembrar de quais acertos o player fez durante o jogo
 public class ProgressionSystem : MonoBehaviour
 {
-    
+    // Entre os key itens para as pessoas
+    // Fala com o prefeito e ele passa o dia
+
     public static ProgressionSystem Instance{get; private set;}
 
     //singleton
@@ -21,12 +23,21 @@ public class ProgressionSystem : MonoBehaviour
         }
     }
 
+    // Management de inventario
     public List<string> objects_names;
     private Dictionary<string, bool> objects_acquired;
     private Dictionary<string, bool> objects_retrived;
 
+    // Avaliar se o item que foi entregue é Key ou não
+    // Key itens - Antena, Celular, Carta
+    public List<string> keyItens_names;
+    private Dictionary<string, bool> keyItens_acquired;
+    private Dictionary<string, bool> keyItens_retrived;
+
+    // Confiança dos NPC - Banana, Cupom, Bola, CD, Jornal
     public List<string> char_names;
     private Dictionary<string, bool> chars_cleared;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +53,14 @@ public class ProgressionSystem : MonoBehaviour
         {
             objects_acquired[name] = false;
             objects_retrived[name] = false;
+        }
+
+        keyItens_acquired = new Dictionary<string, bool>();
+        keyItens_retrived = new Dictionary<string, bool>();
+        foreach (string name in keyItens_names)
+        {
+            keyItens_acquired[name] = false;
+            keyItens_retrived[name] = false;
         }
     }
 
@@ -59,10 +78,16 @@ public class ProgressionSystem : MonoBehaviour
 
     public void MarkObjectAsAcquired(string objects_names)
     {
-        Debug.Log(objects_names);
         if (objects_acquired.ContainsKey(objects_names))
         {
             objects_acquired[objects_names] = true;
+
+            // Verifica se é Key Item
+            if (keyItens_acquired.ContainsKey(objects_names))
+            {
+                keyItens_acquired[objects_names] = true;
+            }
+
             Inventory.Instance.UpdateInventory();
         }
         else
@@ -76,6 +101,14 @@ public class ProgressionSystem : MonoBehaviour
         if (objects_retrived.ContainsKey(objects_names))
         {
             objects_retrived[objects_names] = true;
+
+            // Verifica se é Key Item
+            if (keyItens_retrived.ContainsKey(objects_names))
+            {
+                keyItens_retrived[objects_names] = true;
+                ActManager.Instance.canGoToNextAct = true;
+            }
+
             Inventory.Instance.UpdateInventory();
         }
         else

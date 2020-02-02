@@ -1,0 +1,1 @@
+Você achou uma Foto. #GRAB_Foto

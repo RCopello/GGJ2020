@@ -1,0 +1,1 @@
+Você achou uma carta. #GRAB_Carta

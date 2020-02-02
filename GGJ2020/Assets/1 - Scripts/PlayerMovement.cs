@@ -19,11 +19,12 @@ public class PlayerMovement : MonoBehaviour
     public float cameraLimitRight = 7.0f;
     public float cameraLimitLeft = -7.0f;
 
-    
-    
+    private Vector3 initialPosition;
+
     // Start is called before the first frame update
     void Start()
     {
+        initialPosition = this.transform.position;
         camera = GameObject.FindObjectOfType<Camera>().gameObject.transform;
     }
 
@@ -55,6 +56,11 @@ public class PlayerMovement : MonoBehaviour
         //     MoveTo(CastRayToWorld().x);
         // }
     }
+
+    public void ReturnToOriginalPos()
+    {
+        this.transform.position = initialPosition;
+    } 
 
     Vector3 CastRayToWorld() {
         float distance = 4.5f;
