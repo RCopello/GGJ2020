@@ -5,6 +5,7 @@ using UnityEngine;
 public class EntityPresence : MonoBehaviour
 {
     public TextAsset NPCDialog;
+    public int MyMusicID = 1;
 
     public bool isObject = false;
 
@@ -22,12 +23,14 @@ public class EntityPresence : MonoBehaviour
             //Debug.Log("keycode E");
             if (collision.CompareTag("Player"))
             {
-                if (isObject)
-                    Destroy(this.gameObject);
                 // Trigga o dialogo
                 Debug.Log("call initiate dialog");
                 InkController.Instance.InitiateDialog(NPCDialog);
-
+                FMODManager.Instance.SetMusicParameter(MyMusicID);
+                if(isObject)
+                {
+                    Destroy(this.gameObject);
+                }                
             }
         }
     }
