@@ -40,10 +40,10 @@ public class InkController : MonoBehaviour
         // Pega referencia da HUD
         HUD = this.GetComponent<DialogBoxHUD>();
 
-        InitiateDialog(inkJSON);
+        //InitiateDialog(inkJSON);
     }
 
-    public void InitiateDialog(TextAsset textStory)
+    public void InitiateDialog(TextAsset textStory, bool isObject)
     {
         if (!startedDialog)
         {
@@ -54,6 +54,17 @@ public class InkController : MonoBehaviour
             story = new Story(textStory.text);
 
             loadStoryChunk();
+
+            if (isObject)
+            {
+                string objectName = checkGrabTag(story.currentTags);
+
+                if (objectName != null)
+                {
+                    ProgressionSystem.Instance.MarkObjectAsAcquired(objectName);
+                }
+            }
+                
         }  
     }
 
@@ -107,6 +118,14 @@ public class InkController : MonoBehaviour
     }
 
     private void EndDialog() {
+
+        string objectName = checkGetTag(story.currentTags);
+
+        if(objectName != null)
+        {
+            ProgressionSystem.Instance.MarkObjectAsRetrieved(objectName);
+        }
+
         startedDialog = false;
         Player.GetComponent<PlayerMovement>().canMove = true;
     }
@@ -168,12 +187,8 @@ public class InkController : MonoBehaviour
 
     private void checkEventTags(List<string> tags)
     {
-        
-        Debug.Log(tags.Count);
-        Debug.Log(tags);
         foreach (string tag in tags)
         {
-            Debug.Log(tag);
             if (tag.StartsWith("CLEARED"))
             {
                 //Debug.Log(tag.Substring(8));
@@ -182,6 +197,32 @@ public class InkController : MonoBehaviour
         }
 
         return;
+    }
+
+    private string checkGrabTag(List<string> tags)
+    {
+        foreach (string tag in tags)
+        {
+            if (tag.StartsWith("GRAB"))
+            {
+                return tag.Remove(0, 5);
+            }
+        }
+
+        return null;
+    }
+
+    private string checkGetTag(List<string> tags)
+    {
+        foreach (string tag in tags)
+        {
+            if (tag.StartsWith("GET"))
+            {
+                return tag.Remove(0, 4);
+            }
+        }
+
+        return null;
     }
 
 }

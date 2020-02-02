@@ -26,7 +26,6 @@ public class DialogBoxHUD : MonoBehaviour
 
             InkController inkControl = this.GetComponent<InkController>();
 
-            Debug.Log(i);
             inkControl.OnClickChoiceButton(choices[i]);
         };
     }

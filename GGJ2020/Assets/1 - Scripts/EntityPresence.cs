@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCPresence : MonoBehaviour
+public class EntityPresence : MonoBehaviour
 {
     public TextAsset NPCDialog;
+
+    public bool isObject = false;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -19,7 +21,7 @@ public class NPCPresence : MonoBehaviour
             if (collision.CompareTag("Player"))
             {
                 // Trigga o dialogo
-                InkController.Instance.InitiateDialog(NPCDialog);
+                InkController.Instance.InitiateDialog(NPCDialog, isObject);
 
             }
         }

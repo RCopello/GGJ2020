@@ -20,7 +20,11 @@ public class ProgressionSystem : MonoBehaviour
             GameObject.Destroy(this);
         }
     }
-    
+
+    public List<string> objects_names;
+    private Dictionary<string, bool> objects_acquired;
+    private Dictionary<string, bool> objects_retrived;
+
     public List<string> char_names;
     private Dictionary<string, bool> chars_cleared;
     // Start is called before the first frame update
@@ -30,6 +34,14 @@ public class ProgressionSystem : MonoBehaviour
         foreach(string name in char_names)
         {
             chars_cleared[name] = false;
+        }
+
+        objects_acquired = new Dictionary<string, bool>();
+        objects_retrived = new Dictionary<string, bool>();
+        foreach (string name in objects_names)
+        {
+            objects_acquired[name] = false;
+            objects_retrived[name] = false;
         }
     }
 
@@ -45,9 +57,28 @@ public class ProgressionSystem : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MarkObjectAsAcquired(string objects_names)
     {
-        
+        if (objects_acquired.ContainsKey(objects_names))
+        {
+            objects_acquired[objects_names] = true;
+        }
+        else
+        {
+            Debug.LogWarning("INVALID CHARACTER NAME \"" + objects_names + "\" passed to mark as cleared. Please check for typos.");
+        }
     }
+
+    public void MarkObjectAsRetrieved(string objects_names)
+    {
+        if (objects_retrived.ContainsKey(objects_names))
+        {
+            objects_retrived[objects_names] = true;
+        }
+        else
+        {
+            Debug.LogWarning("INVALID CHARACTER NAME \"" + objects_names + "\" passed to mark as cleared. Please check for typos.");
+        }
+    }
+
 }
