@@ -49,6 +49,7 @@ public class ActManager : MonoBehaviour
 
     public void NextAct()
     {
+        Debug.Log("Proximo ato");
         if(currentAct < acts.Count - 1)
         {
             acts[currentAct].SetActive(false);

@@ -49,6 +49,8 @@ Parece que o papai não entende nada de futebol, perdemos de novo... #NAME_SUELE
 Faz parte menina, não esquenta com isso não. Tenho certeza que o buraco não tem nada a ver com o campeonato, eles podem só ter dado azar mesmo. #NAME_PROTAGONISTA
 Tranquilo.. deve ser mesmo. Mas valeu moça! Muito obrigado mesmo pela companhia! Bom te ter aqui pela cidade! #NAME_SUELEN
 
+#GIVE_Antena
+
 -> FIM
 
 === ITEM_A_TERMINADO ===

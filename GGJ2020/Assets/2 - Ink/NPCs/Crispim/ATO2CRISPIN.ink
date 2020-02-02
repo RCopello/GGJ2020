@@ -29,7 +29,7 @@ Então toma aqui minha antena antiga! Abre, tira umas peças!#NAME_CRISPIM
 
 Obrigada...(Aceito a antena, melhor aceitar que fazer desfeita. Já vou ter que re-abrir o buraco, a galera da cidade não vai ficar muito feliz. E vai que serve pra uma gambiarra?)#NAME_PROTAGONISTA
 
-#GET_Antena
+#GRAB_Antena
 
 ->ESCOLHAS
 

@@ -1340,6 +1340,11 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 7.730174
       objectReference: {fileID: 0}
+    - target: {fileID: 1752902700841352902, guid: 5aef5e25f3c8541ecbfa0461354a17e7,
+        type: 3}
+      propertyPath: NPCDialog
+      value: 
+      objectReference: {fileID: 4900000, guid: 5829061f2c37e449b9c1335c8fc8dbf5, type: 3}
     - target: {fileID: 1752902700841352903, guid: 5aef5e25f3c8541ecbfa0461354a17e7,
         type: 3}
       propertyPath: m_LocalPosition.x
