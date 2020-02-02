@@ -6,7 +6,11 @@ using Ink.Runtime;
 using TMPro;
 
 public class DialogBoxHUD : MonoBehaviour
-{ 
+{
+    public GameObject BoxArt;
+
+    public Sprite EnterButton;
+    public Sprite ClickButton;
 
     public TMP_Text namePrefab;
     public TMP_Text dialogPrefab;
@@ -41,6 +45,8 @@ public class DialogBoxHUD : MonoBehaviour
 
     public void displayText(string text)
     {
+        BoxArt.GetComponent<Image>().sprite = EnterButton;
+
         dialog = Instantiate(dialogPrefab, InkController.Instance.ArteCaixa.transform);
         
         this.dialog.text = text;
@@ -48,6 +54,8 @@ public class DialogBoxHUD : MonoBehaviour
 
     public void displayChoices(List<Choice> choices)
     {
+        BoxArt.GetComponent<Image>().sprite = ClickButton;
+
         for (int i = 0; i < choices.Count; i++)
         {
             buttons.Add(Instantiate(choicePrefab, InkController.Instance.ArteCaixa.transform));

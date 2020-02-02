@@ -47,7 +47,7 @@ public class ActManager : MonoBehaviour
         }
     }
 
-    void NextAct()
+    public void NextAct()
     {
         if(currentAct < acts.Count - 1)
         {

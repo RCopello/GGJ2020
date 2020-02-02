@@ -1,1 +1,1 @@
-﻿{"inkVersion":19,"root":[["^Você achou uma bola. ",{"#":"GRAB_Bola"},{"#":"END_DIALOGUE"},"\n",["done",{"#f":5,"#n":"g-0"}],null],"done",{"#f":1}],"listDefs":{}}
+﻿{"inkVersion":19,"root":[[{"->":"INICIO"},["done",{"#f":5,"#n":"g-0"}],null],"done",{"INICIO":[["ev","str","^Que massa!","/str","/ev",{"*":".^.c-0","flg":4},{"c-0":["^ ",{"->":"FIM"},"\n",{"#f":5}]}],{"#f":1}],"FIM":["^Você achou uma bola.","\n",{"#":"GRAB_Bola"},{"#":"END_DIALOGUE"},{"->":"INICIO"},{"#f":1}],"#f":1}],"listDefs":{}}

@@ -54,6 +54,8 @@ public class InkController : MonoBehaviour
                 
             }
         }
+
+
         Dictionary<string, bool> contains = new Dictionary<string, bool>();
         foreach(string var in story.variablesState)
         {
@@ -65,6 +67,11 @@ public class InkController : MonoBehaviour
             {
                 story.variablesState[entry] = ProgressionSystem.Instance.IsObjectInInventory(entry) ? 1 : 0;
             }
+        }
+
+        if (contains.ContainsKey("CAN_NEXT_ACT"))
+        {
+            story.variablesState["CAN_NEXT_ACT"] = ActManager.Instance.canGoToNextAct ? 1 : 0;
         }
     }
 
@@ -167,6 +174,7 @@ public class InkController : MonoBehaviour
 
         //salva estado
         SaveState();
+        FMODManager.Instance.SetMusicParameter(1);
 
         Player.GetComponent<PlayerMovement>().canMove = true;
     }
@@ -249,7 +257,7 @@ public class InkController : MonoBehaviour
             }
             if (tag.StartsWith("CanGoToNextScene"))
             {
-                ActManager.Instance.canGoToNextAct = true;
+                ActManager.Instance.NextAct();
             }
         }
 
