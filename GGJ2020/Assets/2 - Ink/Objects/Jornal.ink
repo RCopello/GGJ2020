@@ -1,0 +1,1 @@
+Você achou uma jornal. #GRAB_Jornal

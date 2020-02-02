@@ -1,1 +1,0 @@
-Você achou uma batata. Çe çedilha. Palavrão com til. ^^âêõãáéíóú #GRAB_batata
