@@ -175,7 +175,7 @@ public class InkController : MonoBehaviour
                 //Debug.Log(tag.Substring(8));
                 ProgressionSystem.Instance.MarkAsCleared(tag.Substring(8));
             }
-            if (tag.StartsWith("BREAK_DIALOGUE"))
+            if (tag.StartsWith("END_DIALOGUE"))
             {
                 breakDialog = true;
             }
