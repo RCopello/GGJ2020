@@ -34,8 +34,7 @@ NÃO FICO DOENTE DESDE 97... Deus hei de me dar muita riqueza e tesouros...#NAME
 
 (Melhor cortar esse assunto.) Sim, a verdadeira riqueza é a saúde #NAME_PROTAGONISTA
 
--> FIM
--> DONE
+->DONE
 ->ESCOLHAS
 
 

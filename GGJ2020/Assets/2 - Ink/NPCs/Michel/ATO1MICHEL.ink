@@ -1,14 +1,19 @@
-INCLUDE initialization.ink
+MICHEL ATO 1
+
+VAR Celular = 0
+
 ->INTRO
+
 === INTRO ===
 
 (Levei um susto com esse cowboy rindo tão alto.) #NAME_RENATA
+
 Boa tarde, senhorita. No que posso lhe ajudar? #NAME_MICHEL
     
 ->ESCOLHAS
 
 === ESCOLHAS ===
-+ [Puxar papo] -> PADRAO
+* [Puxar papo] -> PADRAO
 + [Meter o pé] -> FIM
 
 === PADRAO ===
@@ -31,6 +36,8 @@ Só uma ultima coisa: Como você conseguiu essa foto? #NAME_RENATA
 Um brother nosso é DJ de Eletro-Brega lá no evento, ele mesmo tirou a foto! Disse que o Ricão tava na mao do palhaco hahaha. #NAME_MICHEL
 Saquei, ele não tem jeito mesmo. Nunca perde uma festa. #NAME_RENATA
 Bom, irei voltar ao trabalho, cowboy. Obrigado pela conversa. #NAME_RENATA
+
+#GRAB_Celular
 
 ->ESCOLHAS
 
