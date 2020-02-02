@@ -1,4 +1,4 @@
-INCLUDE ../../inicialization.ink
+INCLUDE ../../../inicialization.ink
 
 -> INICIO
 === INICIO ===
@@ -9,6 +9,7 @@ Eu sou o prefeito. #NAME_Prefeito
 
 == NEXT ==
 Bora. #CanGoToNextScene
+~CAN_NEXT_ACT = 0
 ->FIM
 
 == FIM ==

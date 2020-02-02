@@ -22,7 +22,8 @@ public class EntityPresence : MonoBehaviour
             {
                 // Trigga o dialogo
                 InkController.Instance.InitiateDialog(NPCDialog);
-                Destroy(this.gameObject);
+                if(isObject)
+                    Destroy(this.gameObject);
 
             }
         }

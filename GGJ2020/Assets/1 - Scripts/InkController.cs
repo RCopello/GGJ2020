@@ -198,7 +198,10 @@ public class InkController : MonoBehaviour
             {
                 ProgressionSystem.Instance.MarkObjectAsRetrieved(tag.Remove(0, 5));
             }
-
+            if (tag.StartsWith("CanGoToNextScene"))
+            {
+                ActManager.Instance.NextAct();
+            }
         }
 
         return;

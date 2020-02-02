@@ -48,7 +48,7 @@ public class ActManager : MonoBehaviour
         }
     }
 
-    void NextAct()
+    public void NextAct()
     {
         if (canGoToNextAct)
         {
