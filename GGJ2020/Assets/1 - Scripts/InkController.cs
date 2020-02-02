@@ -35,6 +35,9 @@ public class InkController : MonoBehaviour
     // Nao permite que se começa um dialogo com o mesmo NPC quando a conversa já começou
     private bool startedDialog = false;
 
+    public TextAsset inkInitializationScript;
+    private string InkState;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +46,9 @@ public class InkController : MonoBehaviour
 
         //InitiateDialog(inkJSON);
         breakDialog = false;
+
+        var story2 = new Story(inkInitializationScript.text);
+        InkState = story2.state.ToJson();
     }
 
     public void InitiateDialog(TextAsset textStory)
@@ -54,6 +60,7 @@ public class InkController : MonoBehaviour
 
             // Pega os trechos de texto do Ink
             story = new Story(textStory.text);
+            story.state.LoadJson(InkState);
 
             loadStoryChunk();    
         }  
@@ -108,6 +115,10 @@ public class InkController : MonoBehaviour
 
         startedDialog = false;
         breakDialog = false;
+
+        //salva estado
+        InkState = story.state.ToJson();
+
         Player.GetComponent<PlayerMovement>().canMove = true;
     }
 
