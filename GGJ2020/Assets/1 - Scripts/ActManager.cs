@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class ActManager : MonoBehaviour
 {
-    
+    public GameObject Player;
+
     public static ActManager Instance { get; private set;}
     private List<GameObject> acts;
 
+    public bool canGoToNextAct = false;
 
     private int currentAct;
     [Tooltip("Setar aqui o ato inicial pra poder testar! Indexado em 0! Não avacalhem!")]
@@ -48,20 +50,25 @@ public class ActManager : MonoBehaviour
 
     void NextAct()
     {
-        if(currentAct < acts.Count - 1)
+        if (canGoToNextAct)
         {
-            acts[currentAct].SetActive(false);
-            acts[currentAct+1].SetActive(true);
-            currentAct++;
-        }
+            if (currentAct < acts.Count - 1)
+            {
+                acts[currentAct].SetActive(false);
+                acts[currentAct + 1].SetActive(true);
+                currentAct++;
+                Player.GetComponent<PlayerMovement>().ReturnToOriginalPos();
+                canGoToNextAct = false;
+            }
+        }  
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        /*if(Input.GetKeyDown(KeyCode.E))
         {
             NextAct();
-        }
+        }*/
     }
 }
