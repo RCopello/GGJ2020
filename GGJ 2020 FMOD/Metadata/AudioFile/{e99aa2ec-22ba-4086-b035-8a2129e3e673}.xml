@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{e99aa2ec-22ba-4086-b035-8a2129e3e673}">
+		<property name="assetPath">
+			<value>GUITARRA INTRO.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>41.468666666666664</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{34845afa-8adc-4567-9391-ebe078e9d156}</destination>
+		</relationship>
+	</object>
+</objects>
