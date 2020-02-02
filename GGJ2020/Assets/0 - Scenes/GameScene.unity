@@ -370,11 +370,6 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 5268539842745476239}
-    - target: {fileID: 8975627624147880498, guid: 2facbceae07534f3ba4584893e91ab91,
-        type: 3}
-      propertyPath: inkInitializationScript
-      value: 
-      objectReference: {fileID: 4900000, guid: cdbe3b520cd0a4344b9fbfc1cadb8822, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2facbceae07534f3ba4584893e91ab91, type: 3}
 --- !u!1 &99738108
