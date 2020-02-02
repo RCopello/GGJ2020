@@ -37,6 +37,7 @@ public class Inventory : MonoBehaviour
         for(int i = 0; i < inventoryObjects.Count; i++)
         {
             var obj = inventoryObjects[i];
+            //Debug.Log(obj);
             obj.SetActive(ProgressionSystem.Instance.IsObjectInInventory(obj.name));
         }
     }
