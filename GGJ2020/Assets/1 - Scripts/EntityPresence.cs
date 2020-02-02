@@ -21,7 +21,8 @@ public class EntityPresence : MonoBehaviour
             if (collision.CompareTag("Player"))
             {
                 // Trigga o dialogo
-                InkController.Instance.InitiateDialog(NPCDialog, isObject);
+                InkController.Instance.InitiateDialog(NPCDialog);
+                Destroy(this.gameObject);
 
             }
         }
